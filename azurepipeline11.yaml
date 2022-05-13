@@ -2,7 +2,7 @@ jobs:
 - deployment: VMDeploy
   displayName: web
   environment:
-    name: fine1
+    name: pizza
     resourceType: VirtualMachine
   strategy:
       rolling:
