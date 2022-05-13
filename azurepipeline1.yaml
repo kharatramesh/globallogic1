@@ -1,0 +1,23 @@
+jobs: 
+- deployment: VMDeploy
+  displayName: web
+  environment:
+    name: pizza
+    resourceType: VirtualMachine
+  strategy:
+      rolling:
+        maxParallel: 2  #for percentages, mention as x%
+        
+        deploy:
+          steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Modify deployment script based on the app type
+                echo "Starting deployment script run"
+                sudo sudo apt-get update
+                sudo apt-get install ca-certificates curl gnupg lsb-release
+                sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+                sudo apt-get update
+                sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
