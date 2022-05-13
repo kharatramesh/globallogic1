@@ -1,12 +1,12 @@
 jobs: 
-- deployment: VMDeploy
+- deployment: globallogic1
   displayName: web
   environment:
     name: pizza
     resourceType: VirtualMachine
   strategy:
       rolling:
-        maxParallel: 5  #for percentages, mention as x%
+        maxParallel: 1  #for percentages, mention as x%
         preDeploy:
           steps:
           - download: current
@@ -20,7 +20,7 @@ jobs:
               script: |
                 # Modify deployment script based on the app type
                 echo "Starting deployment script run"
-                sudo java -jar '$(Pipeline.Workspace)/drop/**/target/*.jar'
+                sudo java -jar '$(Pipeline.Workspace)/**/target/*.jar'
         routeTraffic:
           steps:
           - script: echo routing traffic
